@@ -1,6 +1,6 @@
-console.log('gMapZoomShortcut loaded v10 (MAIN world)');
+console.log('gMapZoomShortcut loaded v12 (MAIN world)');
 
-const ZOOM_KEYS = ['=', '-', '+', '_'];
+const ZOOM_KEYS = ['=', '-', '+', '_', 'i', 'o'];
 const PAN_KEYS = ['h', 'j', 'k', 'l'];
 const ALL_KEYS = [...ZOOM_KEYS, ...PAN_KEYS];
 const PAN_STEP_MIN = 6;
@@ -108,6 +108,7 @@ function isTextInput(el) {
 
 function blockKey(event) {
     if (isTextInput(document.activeElement)) return;
+    if (event.ctrlKey || event.altKey || event.metaKey) return;
     if (ALL_KEYS.includes(event.key)) {
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -117,6 +118,7 @@ function blockKey(event) {
 document.addEventListener('keypress', blockKey, true);
 document.addEventListener('keyup', function (event) {
     if (isTextInput(document.activeElement)) return;
+    if (event.ctrlKey || event.altKey || event.metaKey) return;
     if (ALL_KEYS.includes(event.key)) {
         event.preventDefault();
         event.stopImmediatePropagation();
@@ -130,6 +132,7 @@ document.addEventListener('keyup', function (event) {
 
 document.addEventListener('keydown', function (event) {
     if (isTextInput(document.activeElement)) return;
+    if (event.ctrlKey || event.altKey || event.metaKey) return;
 
     if (ZOOM_KEYS.includes(event.key)) {
         event.preventDefault();
@@ -140,7 +143,7 @@ document.addEventListener('keydown', function (event) {
         const zoomOutButton = document.querySelector('#widget-zoom-out')
             || document.querySelector('button[aria-label="Zoom out"]');
 
-        if (event.key === '=' || event.key === '+') {
+        if (event.key === '=' || event.key === '+' || event.key === 'i') {
             if (zoomInButton) zoomInButton.click();
         } else {
             if (zoomOutButton) zoomOutButton.click();

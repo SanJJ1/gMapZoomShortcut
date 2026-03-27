@@ -1,8 +1,11 @@
 {
     "manifest_version": 3,
     "name": "Google Maps Keyboard Nav",
-    "version": "1.1",
+    "version": "1.2",
     "description": "Fixes Google Maps keyboard shortcuts. Reliable +/- zoom and HJKL vim-style panning with smooth acceleration.",
+    "icons": {
+        "128": "logo.png"
+    },
     "content_scripts": [
         {
             "matches": [
